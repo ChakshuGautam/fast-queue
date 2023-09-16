@@ -8,7 +8,7 @@ You will need to install [bun](https://bun.sh/docs/installation).
 
 Start the server
 ```bash
-bun queue.js
+bun server.js
 ```
 
 Send messages to the server

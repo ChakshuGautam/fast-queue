@@ -1,4 +1,4 @@
-<h1 align="center">fast-server</h1>
+<h1 align="center">fast-queue</h1>
 
 A fast queue served over HTTP. Able to ingest and serve upto 120k messages per second.
 

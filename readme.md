@@ -8,12 +8,17 @@ You will need to install [bun](https://bun.sh/docs/installation).
 
 Start the server
 ```bash
-bun server.js
+bun queue.js
 ```
 
 Send messages to the server
 ```bash
 wrk http://localhost:8080/
+```
+
+Dequeue messages from the server
+```bash
+curl http://localhost:8080/next
 ```
 
 See the requests stored in the queue file - `request.queue.txt`

@@ -16,15 +16,36 @@ Bun.serve({
 
         if (url.pathname === "/") {
             index += 1;
+
+            if (req.method === "POST") {
+                try {
+                    const body = await req.json();
+                    const data = JSON.stringify({
+                        method: req.method,
+                        url: req.url,
+                        index: index,
+                        payload: body
+                    });
+                    writer.write(data + "\n");
+                    q.enqueue(data);
+                    return new Response("ack");
+                } catch (error) {
+                    return new Response("Invalid JSON", { status: 400 });
+                }
+            }
+
+            // Handle GET request as before
             const data = `${req.method} ${req.url} ${index}`;
             writer.write(data + "\n");
             q.enqueue(data);
             return new Response("ack");
         }
+
         if (url.pathname === "/next") {
             offset += 1;
             return new Response(q.dequeue());
         }
-        return new Response("404!");
+
+        return new Response("404!", { status: 404 });
     },
 });
